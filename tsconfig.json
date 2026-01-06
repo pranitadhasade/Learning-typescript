@@ -1,0 +1,27 @@
+{
+  "compilerOptions": {
+    /* Environment Settings */
+    "module": "nodenext",
+    "target": "esnext",
+    "lib": ["esnext"], // <--- ADDED: Tells TS to recognize modern JS features like .includes()
+    "types": ["node"], // <--- ADDED: Provides types for Node.js environment
+
+    /* File Layout */
+    "sourceMap": true,
+    "declaration": true,
+    "declarationMap": true,
+
+    /* Stricter Typechecking Options */
+    "noUncheckedIndexedAccess": true, // Note: This requires the 'undefined' checks we used in your script
+    "exactOptionalPropertyTypes": true,
+
+    /* Recommended Options */
+    "strict": true,
+    "jsx": "react-jsx",
+    "verbatimModuleSyntax": true,
+    "isolatedModules": true,
+    "noUncheckedSideEffectImports": true,
+    "moduleDetection": "force",
+    "skipLibCheck": true
+  }
+}
