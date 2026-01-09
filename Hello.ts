@@ -1,11 +1,3 @@
-// it is a typescript file with extension .ts
-// .ts ---> tsc(TS compiler) ---> .js ---> it can be executed on any JS runtime env (browsers, node.js, Apps)
+// Let's Start
 
-/**
- *  This block explains the purpose of the file.
- * It is commonly used at the top of files.
- */
-
-
-console.log("Hey There!");
-
+console.log("It is logs")

@@ -1,105 +1,79 @@
-/**
- * TYPESCRIPT ARRAYS FOR AUTOMATION
- * Purpose: Handling test data, environment lists, and multi-browser execution.
- */
+//Arrays
 
-// ==================== 1. ARRAY DECLARATION ====================
+let fruits: string[] = ['Apple', 'Banana', 'Orange'];
 
-// Method A: Square bracket notation (Preferred)
-let browsers: string[] = ["Chromium", "Firefox", "WebKit"];
+let numbers: Array<number> = [1, 2, 3, 4, 5];
 
-// Method B: Generic notation
-let executionTimes: Array<number> = [1.5, 2.8, 3.2];
+let testresults: boolean[] = [true, false, true, true];
 
-// Array of booleans (Checkpoints)
-let testResults: boolean[] = [true, false, true];
-
-// Read-only Arrays (Immutable configuration)
-const envConfig: readonly string[] = ["DEV", "STAGING", "PROD"];
-// envConfig.push("QA"); // Error: Property 'push' does not exist on type 'readonly string[]'
+//readonly array
+let readonlyFruits: ReadonlyArray<string> = ['Mango', 'Pineapple', 'Grapes'];
+//readonlyFruits.push('Kiwi'); // Error: Property 'push' does not exist on type 'readonly string[]'
 
 
-// ==================== 2. ACCESSING & MODIFYING ====================
+testresults.push(false); // Valid operation
 
-// Access via index
-console.log("Primary Browser:", browsers[0]);
+//access array element
+console.log('testresults:', testresults);
+console.log('First fruit:', fruits[0]);
 
-// Modifying an element
-browsers[1] = "Firefox ESR";
+fruits[1] = 'Strawberry'; // Modify element
+console.log('Modified fruits:', fruits);
 
-// Array Length
-console.log("Total Browsers to test:", browsers.length);
+//length of arrays
+console.log('Number of fruits:', fruits.length);
+console.log('Number of test results:', testresults.length);
 
+fruits.push('Kiwi'); // Add element
+fruits.unshift('Papaya'); // Add element at the beginning
+console.log('Fruits after additions:', fruits);
 
-// ==================== 3. ADDING & REMOVING ====================
+fruits.pop(); // Remove last element
+fruits.shift(); // Remove first element
+console.log('Fruits after removals:', fruits);
 
-browsers.push("Edge");      // Adds to end
-browsers.unshift("Safari"); // Adds to beginning
-browsers.pop();             // Removes last element
-browsers.shift();           // Removes first element
+let stationaryItems: string[] = ['Green', 'Blue', 'Black', 'Red'];
+console.log('Stationary Items:', stationaryItems);
 
+stationaryItems[0] = 'Pink';
+stationaryItems[3] = 'Yellow';
+console.log('Stationary Items after modifications:', stationaryItems);
 
-// ==================== 4. CHECKING EXISTENCE ====================
+stationaryItems.pop();
+stationaryItems.shift();
+stationaryItems.push('Pink');
+stationaryItems.unshift('Yellow');
 
-// Method A: Modern ES6+ (Recommended)
-let isWebKitSupported: boolean = browsers.includes("WebKit");
+console.log('Stationary Items after pop and shift:', stationaryItems);
 
-// Method B: Manual Loop (The "Under the Hood" logic)
-let hasChromium: boolean = false;
-for (let i = 0; i < browsers.length; i++) {
-    if (browsers[i] === "Chromium") {
-        hasChromium = true;
-        break;
-    }
-}
-console.log("Contains Chromium:", hasChromium);
+let isRedPresent: boolean = stationaryItems.includes('Red');
+console.log('Is Red present in stationary items?', isRedPresent);
 
+//tuples
+let person: [string, number, boolean] = ['Alice', 30, true];
+console.log('Person Tuple:', person);
 
-// ==================== 5. ADVANCED TYPES (UNION & TUPLES) ====================
+//union types with arrays
+let mixedArray: (string | number)[] = ['Hello', 42, 'World', 100];
+console.log('Mixed Array:', mixedArray);
 
-// Union Type: Useful for mixed status logs
-let testLog: (string | number)[] = ["LoginTest", 200, "Success"];
+// .map() method
+let upperFruits: string[] = fruits.map(fruit => fruit.toUpperCase());
+console.log('Uppercase Fruits:', upperFruits);
 
-// Tuples: Fixed length and fixed type order (e.g., Viewport dimensions)
-let viewport: [number, number] = [1920, 1080];
+let fullurls = fruits.map(path => `https://example.com/${path.toLowerCase()}`);
+console.log('Full URLs:', fullurls);
 
+// .filter() method
+let longNamedFruits: string[] = fruits.filter(fruit => fruit.length > 5);
+console.log('Fruits with names longer than 5 characters:', longNamedFruits);
 
-// ==================== 6. ARRAY OF OBJECTS ====================
-
-interface TestUser {
-    username: string;
-    role: 'Admin' | 'QE'; 
-}
-
-let testUsers: TestUser[] = [
-    { username: "admin_01", role: "Admin" },
-    { username: "tester_01", role: "QE" }
+// multidimensional arrays
+let testmatrix: number[][] = [
+    [1, 2, 3],
+    [4, 5, 6],
+    [7, 8, 9]
 ];
 
-// Iterating through objects
-testUsers.forEach((user) => {
-    console.log(`Checking permissions for: ${user.username} (Role: ${user.role})`);
-});
-
-
-// ==================== 7. TRANSFORMING DATA ====================
-
-const appNames: string[] = ["login", "dashboard", "settings"];
-
-// .map() - Creating URLs from paths
-const fullUrls = appNames.map(path => `https://test-env.com/${path}`);
-
-// .filter() - Finding specific data
-const longAppNames = appNames.filter(name => name.length > 5);
-
-
-// ==================== 8. MULTI-DIMENSIONAL (TABLE DATA) ====================
-
-// Useful for Data-Driven Testing (DDT) rows and columns
-let testMatrix: string[][] = [
-    ["user1", "pass1"],
-    ["user2", "pass2"],
-    ["user3", "pass3"]
-];
-
-console.log("Execution complete.");
+console.log('Test Matrix:', testmatrix);
+//console.log('Element at (1,1):', testmatrix[1][1]); // Accessing element at row 1, column 1
